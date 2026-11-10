@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#18251f" />
+  <title>Hearth &amp; Hollow — Guildmaster</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Hearth and Hollow home">
+        <span class="brand-mark">✦</span><span><b>HEARTH <i>&amp;</i> HOLLOW</b><small>ADVENTURERS' GUILD</small></span>
+      </a>
+      <div class="season"><span class="season-icon">☀</span><span><b id="season-label">Midsummer, 1st</b><small id="weather-label">Clear skies · good omens</small></span></div>
+      <div class="top-actions"><button class="icon-button" id="sound-toggle" aria-label="Toggle sound" title="Toggle ambience">♫</button><button class="icon-button" id="help-button" aria-label="How to play" title="How to play">?</button><button class="avatar" title="Guildmaster">G</button></div>
+    </header>
+
+    <main>
+      <section class="welcome-row">
+        <div><p class="eyebrow">YOUR STORY BEGINS HERE</p><h1>A guild worth <em>remembering.</em></h1><p class="subtitle">Build your roster, take on contracts, and make your mark on the realm.</p></div>
+        <div class="day-controls"><div class="day-stamp"><span class="tiny-label">GUILD DAY</span><strong id="day-number">01</strong></div><button class="button button-gold" id="next-day">End day <span>→</span></button></div>
+      </section>
+
+      <section class="stats-strip" aria-label="Guild resources">
+        <div class="stat"><span class="stat-icon coin">◉</span><span><small>TREASURY</small><strong id="gold-value">180 <i>g</i></strong></span><span class="stat-note" id="gold-note">Steady</span></div>
+        <div class="stat"><span class="stat-icon renown">✧</span><span><small>RENOWN</small><strong id="renown-value">12</strong></span><span class="stat-note" id="rank-value">Wayfarer</span></div>
+        <div class="stat"><span class="stat-icon people">♟</span><span><small>ADVENTURERS</small><strong id="crew-value">3 <i>/ 5</i></strong></span><span class="stat-note">Your crew</span></div>
+        <div class="stat"><span class="stat-icon flame">♨</span><span><small>GUILD SPIRIT</small><strong id="spirit-value">76<span class="percent">%</span></strong></span><span class="spirit-meter"><i id="spirit-bar"></i></span></div>
+      </section>
+
+      <div class="dashboard-grid">
+        <section class="panel board-panel">
+          <div class="panel-heading"><div><p class="eyebrow">FRESH FROM THE COVENANT</p><h2>Notice board <span class="live-dot"></span></h2></div><button class="text-button" id="refresh-board" title="Refresh contracts">↻ <span>Refresh</span></button></div>
+          <div class="board-intro"><span class="wax-seal">✦</span><p>Choose a contract. Every good tale starts with a little risk.</p></div>
+          <div id="quest-list" class="quest-list"></div>
+          <div class="board-footer"><span>✦ CONTRACTS REFRESH IN <b id="refresh-days">3 DAYS</b></span><span class="board-flourish">❧</span></div>
+        </section>
+
+        <section class="panel roster-panel">
+          <div class="panel-heading"><div><p class="eyebrow">THE PEOPLE WHO MAKE IT HAPPEN</p><h2>Your fellowship <span class="count-pill" id="roster-count">03</span></h2></div><button class="text-button" id="hire-button">＋ <span>Recruit</span></button></div>
+          <div class="hall-art" aria-label="Illustration of the guild hall">
+            <div class="hall-sun"></div><div class="hall-roof"><span>✦</span></div><div class="hall-sign">GUILD</div><div class="hall-building"><div class="hall-window w1"></div><div class="hall-window w2"></div><div class="hall-door"></div></div><div class="hall-lantern l1">✦</div><div class="hall-lantern l2">✦</div><div class="hall-ground"></div>
+            <div class="hall-caption"><b>The old wayhouse</b><span>Level <i id="hall-level">1</i> · Hearth warm</span></div>
+          </div>
+          <div id="roster-list" class="roster-list"></div>
+          <button class="upgrade-button" id="upgrade-button"><span class="upgrade-icon">⌂</span><span><b>Improve the guild hall</b><small>More beds, better company — 220g</small></span><span class="upgrade-arrow">↗</span></button>
+        </section>
+
+        <section class="panel dispatch-panel">
+          <div class="panel-heading"><div><p class="eyebrow">PLAN YOUR NEXT MOVE</p><h2>Expedition desk</h2></div><span class="dispatch-icon">⚑</span></div>
+          <div id="dispatch-content" class="dispatch-content"></div>
+          <div class="dispatch-tip"><span>✧</span><p><b>Guildmaster's note</b><br>Balance your party's talents. A little magic goes a long way.</p></div>
+        </section>
+
+        <section class="panel activity-panel">
+          <div class="panel-heading"><div><p class="eyebrow">THE WORLD DOESN'T WAIT</p><h2>On the road <span class="count-pill dark" id="active-count">0</span></h2></div><span class="road-icon">⌁</span></div>
+          <div id="active-list" class="active-list"></div>
+        </section>
+        <section class="panel chronicle-panel">
+          <div class="panel-heading"><div><p class="eyebrow">A RECORD OF YOUR DEEDS</p><h2>Guild chronicle</h2></div><span class="book-icon">▤</span></div>
+          <div id="log-list" class="log-list" aria-live="polite"></div>
+        </section>
+      </div>
+      <footer class="footer"><span>✦ <b>HEARTH &amp; HOLLOW</b> · A guild is only as good as its next story.</span><button id="reset-button" class="reset-button">Start a new guild</button></footer>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="modal" class="modal"><div class="modal-inner"><button class="modal-close" id="modal-close" aria-label="Close">×</button><div id="modal-content"></div></div></dialog>
+  <script src="game.js"></script>
+</body>
+</html>
